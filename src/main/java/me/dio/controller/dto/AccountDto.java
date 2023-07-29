@@ -4,13 +4,14 @@ import me.dio.domain.model.Account;
 
 import java.math.BigDecimal;
 
-public record AccountDto(String number, String agency, BigDecimal balance, BigDecimal limit) {
+public record AccountDto(Long id, String number, String agency, BigDecimal balance, BigDecimal limit) {
     public static AccountDto fromModel(Account model) {
-        return new AccountDto(model.getNumber(), model.getAgency(), model.getBalance(), model.getLimit());
+        return new AccountDto(model.getId(), model.getNumber(), model.getAgency(), model.getBalance(), model.getLimit());
     }
 
     public Account toModel() {
         Account model = new Account();
+        model.setId(this.id);
         model.setNumber(this.number);
         model.setAgency(this.agency);
         model.setBalance(this.balance);

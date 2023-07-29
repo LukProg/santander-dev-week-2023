@@ -2,14 +2,18 @@ package me.dio.controller.dto;
 
 import me.dio.domain.model.Card;
 
-public record CardDto(String number) {
+import java.math.BigDecimal;
+
+public record CardDto(Long id, String number, BigDecimal limit) {
     public static CardDto fromModel(Card model) {
-        return new CardDto(model.getNumber());
+        return new CardDto(model.getId(), model.getNumber(), model.getLimit());
     }
 
     public Card toModel() {
-        Card card = new Card();
-        card.setNumber(this.number);
-        return card;
+        Card model = new Card();
+        model.setId(this.id);
+        model.setNumber(this.number);
+        model.setLimit(this.limit);
+        return model;
     }
 }

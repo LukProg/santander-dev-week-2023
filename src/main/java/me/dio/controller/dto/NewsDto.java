@@ -2,13 +2,14 @@ package me.dio.controller.dto;
 
 import me.dio.domain.model.News;
 
-public record NewsDto(String icon, String description) {
+public record NewsDto(Long id, String icon, String description) {
     public static NewsDto fromModel(News model) {
-        return new NewsDto(model.getIcon(), model.getDescription());
+        return new NewsDto(model.getId(), model.getIcon(), model.getDescription());
     }
 
     public News toModel() {
         News model = new News();
+        model.setId(this.id);
         model.setIcon(this.icon);
         model.setDescription(this.description);
         return model;
